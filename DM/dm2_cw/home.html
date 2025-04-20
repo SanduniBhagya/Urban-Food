@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UrbanFood - Welcome</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .login-container {
+            max-width: 600px;  /* Reduced from 800px */
+            width: 85%;       /* Adjusted for better proportions */
+            margin: 1.5rem auto; /* Reduced top margin to move container up */
+            padding: 2.5rem;  /* Slightly reduced padding */
+            text-align: center;
+            background: linear-gradient(135deg, #1a2a6c 0%, #3768b3 100%);
+            color: #FFD700;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        .role-btn {
+            display: block;
+            width: 80%;  /* Adjusted for narrower container */
+            padding: 0.9rem;  /* Slightly reduced padding */
+            margin: 1.2rem auto; /* Adjusted spacing */
+            font-size: 1.1rem;  /* Slightly smaller font */
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            background-color: #FFD700;
+            color: #1a2a6c;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+        }
+        .role-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            background-color: #ffdf33;
+        }
+        h1 {
+            color: #FFD700;
+            margin-bottom: 1.2rem; /* Reduced spacing */
+            font-size: 1.8rem;  /* Slightly smaller heading */
+        }
+        p {
+            color: #ffffff;
+            margin-bottom: 1.8rem; /* Adjusted spacing */
+            font-size: 1rem;  /* Standard font size */
+        }
+        .logo-img {
+            width: 130px;  /* Slightly reduced logo size */
+            margin-bottom: 1.2rem; /* Reduced spacing */
+            transition: transform 0.3s ease;
+        }
+        .logo-img:hover {
+            transform: scale(1.05);
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Changed to flex-start to move container up */
+            min-height: 100vh;
+            padding-top: 2rem; /* Added top padding instead of equal padding */
+            background: #f5f7fa;
+            background-image: linear-gradient(to bottom right, #e6f0ff, #f0f5ff);
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container card">
+        <img src="images/logo.png" alt="UrbanFood Logo" width="200">
+        <h1>Welcome to UrbanFood</h1>
+        <p>Please select your role to continue:</p>
+        
+        <button onclick="Auth.login('customer')" class="role-btn btn-primary">
+            Continue as Customer
+        </button>
+        
+        <button onclick="Auth.login('supplier')" class="role-btn btn-primary">
+            Continue as Supplier
+        </button>
+        
+        <button onclick="Auth.login('admin')" class="role-btn btn-primary">
+            Continue as Administrator
+        </button>
+    </div>
+
+    <script src="js/auth.js"></script>
+</body>
+</html>

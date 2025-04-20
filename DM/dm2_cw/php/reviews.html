@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Reviews - UrbanEats</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap + FontAwesome -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Customer Reviews</h2>
+    
+    <!-- Reviews Section -->
+    <div id="reviews-list">
+        <p>Loading reviews...</p>
+    </div>
+</div>
+
+<!-- JS Scripts -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+function loadReviews() {
+    $.getJSON('php/load_reviews.php', function (data) {
+        const container = $('#reviews-list');
+        container.empty();
+
+        if (data.length === 0) {
+            container.append("<p class='text-muted'>No reviews yet.</p>");
+            return;
+        }
+
+        data.forEach(function (review) {
+            const stars = '<i class="fas fa-star text-warning"></i>'.repeat(review.rating) +
+                          '<i class="far fa-star text-warning"></i>'.repeat(5 - review.rating);
+
+            const html = `
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <strong>${review.username}</strong>
+                            <div>${stars}</div>
+                        </div>
+                        <p class="mt-2">${review.review}</p>
+                        <small class="text-muted">${review.created_at}</small>
+                    </div>
+                </div>
+            `;
+            container.append(html);
+        });
+    }).fail(function () {
+        $('#reviews-list').html("<p class='text-danger'>Failed to load reviews.</p>");
+    });
+}
+
+$(document).ready(function () {
+    loadReviews();
+});
+</script>
+
+<!-- Bootstrap Bundle -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
